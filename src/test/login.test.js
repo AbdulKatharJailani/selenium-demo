@@ -30,7 +30,7 @@ const assertErrorMessage = async (expectedErrorMessage) => {
 const setupWebDriver = async (browserName) => {
   return await new Builder().forBrowser(browserName).build();
 };
-const browsers = ["firefox"];
+const browsers = ["chrome"];
 
 describe("Login Test", () => {
   afterEach(async () => {
