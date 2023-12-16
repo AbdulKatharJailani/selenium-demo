@@ -1,4 +1,4 @@
-import { Builder, By, until } from "selenium-webdriver";
+import { Builder, By, until,Browser } from "selenium-webdriver";
 import fs from "fs";
 import path from "path";
 
@@ -27,10 +27,9 @@ const assertErrorMessage = async (expectedErrorMessage) => {
   expect(errorMessageText).toEqual(expectedErrorMessage);
 };
 
-const setupWebDriver = async (browserName) => {
-  return await new Builder().forBrowser(browserName).build();
+const setupWebDriver = async () => {
+  return await new Builder().forBrowser(Browser.CHROME).build();
 };
-const browsers = ["chrome"];
 
 describe("Login Test", () => {
   afterEach(async () => {
@@ -57,9 +56,9 @@ describe("Login Test", () => {
     await driver.quit();
   });
 
-  browsers.forEach((browserName) => {
+
     test(`Login Invalid Username Handling:`, async () => {
-      driver = await setupWebDriver(browserName);
+      driver = await setupWebDriver();
       allure.story("Invalid Username Handling");
       allure.description(
         "This test case verifies that an error message is displayed when an invalid username and a valid password are used for login."
@@ -72,14 +71,14 @@ describe("Login Test", () => {
         }
       );
       await allure.step("Step 2: Verify Error Message", async () => {
-        await assertErrorMessage("Your username is invad!");
+        await assertErrorMessage("Your username is invalid!");
       });
     });
-  });
 
-  browsers.forEach((browserName) => {
+
+
     test(`Login Invalid Password Handling:`, async () => {
-      driver = await setupWebDriver(browserName);
+      driver = await setupWebDriver();
       allure.story("Invalid Password Handling");
       allure.description(
         "This test case verifies that an error message is displayed when an valid username and a invalid password are used for login."
@@ -95,11 +94,11 @@ describe("Login Test", () => {
         await assertErrorMessage("Your password is invalid!");
       });
     });
-  });
 
-  browsers.forEach((browserName) => {
+
+
     test(`Valid UserName and Valid Password handling:`, async () => {
-      driver = await setupWebDriver(browserName);
+      driver = await setupWebDriver();
       allure.story("Valid UserName and Valid Password handling");
       allure.description(
         "This test case verifies the successful login with valid credentials, redirects to the success page, and logs out correctly."
@@ -135,5 +134,4 @@ describe("Login Test", () => {
         expect(logoutURL).toEqual(WEB_PAGE_URL);
       });
     });
-  });
 });
