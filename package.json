@@ -1,0 +1,24 @@
+{
+  "name": "seleniumdemo-jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest --runInBand --no-color",
+    "report:generate": "mkdir allure-results/history || echo 'history folder already in place...continuing :)' && cp allure-report/history/* ./allure-results/history && echo 'Allure trends updated!'\n allure generate --clean"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
+    "allure-jest": "^2.9.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "selenium-standalone": "^9.0.5"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.15.0"
+  }
+}
