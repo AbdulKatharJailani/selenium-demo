@@ -11,9 +11,6 @@ describe("Sample Selenium WebDriver Test", () => {
       .setFirefoxOptions(firefoxOptions)
       .build();
   });
-  afterEach(async()=>{
-    await driver.quit();
-  })
   test('should open Google homepage and search for "Jest"', async () => {
     await driver.get("https://www.google.com");
     const searchInput = await driver.findElement(By.name("q"));
