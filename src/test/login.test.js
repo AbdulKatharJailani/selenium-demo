@@ -1,18 +1,15 @@
 import { Builder, By, Key, until } from "selenium-webdriver";
+import firefox from 'selenium-webdriver/firefox';
 
 describe("Sample Selenium WebDriver Test", () => {
   let driver;
   beforeEach(async () => {
+    const firefoxOptions = new firefox.Options();
+    firefoxOptions.headless();
     driver = await new Builder()
-    .usingServer("http://localhost:4444/wd/hub")
-    .forBrowser("firefox")
-    .withCapabilities({
-      browserName: 'firefox',
-      'moz:firefoxOptions': {
-        args: ['-headless']
-      }
-    })
-    .build();
+      .forBrowser('firefox')
+      .setFirefoxOptions(firefoxOptions)
+      .build();
   });
   afterEach(async()=>{
     await driver.quit();
