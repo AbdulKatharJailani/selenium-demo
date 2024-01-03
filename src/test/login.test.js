@@ -6,7 +6,7 @@ describe("Sample Selenium WebDriver Test", () => {
 
   beforeEach(async () => {
     try {
-      driver = new Builder()
+      driver = await new Builder()
         .forBrowser(Browser.CHROME)
         .setChromeOptions(new chrome.Options().headless())
         .build();
@@ -19,18 +19,28 @@ describe("Sample Selenium WebDriver Test", () => {
   });
 
   test('should open Google homepage and search for "Jest"', async () => {
+    try {
       await driver.get("https://www.google.com");
       const searchInput = await driver.findElement(By.name("q"));
       await searchInput.sendKeys("Jest", Key.RETURN);
-      await driver.wait(until.titleContains("Jest"), 10000); 
+      await driver.wait(until.titleContains("Jest"), 10000);
       const pageTitle = await driver.getTitle();
       expect(pageTitle).toContain("Jest");
+    } catch (error) {
+      console.error("Test failed:", error);
+      throw error;
+    }
   });
 
   afterEach(async () => {
-    if (driver) {
-      await driver.quit();
-      console.log("WebDriver closed successfully");
+    try {
+      if (driver) {
+        await driver.quit();
+        console.log("WebDriver closed successfully");
+      }
+    } catch (error) {
+      console.error("Error closing WebDriver:", error);
+      throw error;
     }
   });
 });
