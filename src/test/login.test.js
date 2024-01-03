@@ -19,19 +19,12 @@ describe("Sample Selenium WebDriver Test", () => {
   });
 
   test('should open Google homepage and search for "Jest"', async () => {
-    try {
       await driver.get("https://www.google.com");
       const searchInput = await driver.findElement(By.name("q"));
       await searchInput.sendKeys("Jest", Key.RETURN);
       await driver.wait(until.titleContains("Jest"), 10000); 
-
       const pageTitle = await driver.getTitle();
       expect(pageTitle).toContain("Jest");
-    } catch (error) {
-      console.error("Test failed with error:", error);
-      console.error("Additional information:", error.message);
-      throw error; 
-    }
   });
 
   afterEach(async () => {
