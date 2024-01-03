@@ -6,7 +6,8 @@ describe("Sample Selenium WebDriver Test", () => {
 
   beforeEach(async () => {
     try {
-      const firefoxOptions = new firefox.Options();    
+      const firefoxOptions = new firefox.Options();
+      firefoxOptions.headless();
       driver = await new Builder().forBrowser(Browser.FIREFOX).setFirefoxOptions(firefoxOptions).build();
       console.log("WebDriver initialized successfully");
     } catch (error) {
