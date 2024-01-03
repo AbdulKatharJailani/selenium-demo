@@ -1,5 +1,6 @@
 import { Builder, By, Key, until, Browser } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
+import 'chromedriver';
 
 describe("Sample Selenium WebDriver Test", () => {
   
