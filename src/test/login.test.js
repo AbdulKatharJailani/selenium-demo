@@ -4,7 +4,7 @@ import chrome from "selenium-webdriver/chrome";
 describe("Sample Selenium WebDriver Test", () => {
   
   test('should open Google homepage and search for "Jest"', async () => {
-     let driver = new Builder()
+     let driver = await new Builder()
       .forBrowser(Browser.CHROME)
       .setChromeOptions(new chrome.Options().headless())
       .build();
