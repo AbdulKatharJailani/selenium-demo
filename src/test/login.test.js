@@ -1,15 +1,15 @@
 import { Builder, By, Key, until, Browser } from "selenium-webdriver";
-import firefox from "selenium-webdriver/firefox";
+import chrome from "selenium-webdriver/chrome";
 
 describe("Sample Selenium WebDriver Test", () => {
   let driver;
 
   beforeEach(async () => {
     try {
-      const firefoxOptions = new firefox.Options();
-      firefoxOptions.headless();
-      console.log(firefoxOptions);
-      driver = await new Builder().forBrowser(Browser.FIREFOX).setFirefoxOptions(firefoxOptions).build();
+      driver = new Builder()
+        .forBrowser(Browser.CHROME)
+        .setChromeOptions(new chrome.Options().headless())
+        .build();
       console.log("WebDriver initialized successfully");
     } catch (error) {
       console.error("Error initializing WebDriver:", error);
