@@ -6,6 +6,7 @@ describe("Sample Selenium WebDriver Test", () => {
   beforeEach(async () => {
    const firefoxOptions = new firefox.Options();
     firefoxOptions.headless();
+    firefoxOptions.setBinary("/usr/bin/firefox");
     driver = await new Builder().forBrowser("firefox").setFirefoxOptions(firefoxOptions).build();
   });
   test('should open Google homepage and search for "Jest"', async () => {
