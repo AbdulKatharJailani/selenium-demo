@@ -1,13 +1,12 @@
-import { Builder, By, Key, until } from "selenium-webdriver";
-import firefox from "selenium-webdriver/firefox"
+import { Builder, By, Key, until, Browser } from "selenium-webdriver";
+import firefox from "selenium-webdriver/firefox";
 
 describe("Sample Selenium WebDriver Test", () => {
   let driver;
   beforeEach(async () => {
-   const firefoxOptions = new firefox.Options();
+    const firefoxOptions = new firefox.Options();
     firefoxOptions.headless();
-    firefoxOptions.setBinary("/usr/bin/firefox");
-    driver = await new Builder().forBrowser("firefox").setFirefoxOptions(firefoxOptions).build();
+    driver = await new Builder().forBrowser(Browser.FIREFOX).setFirefoxOptions(firefoxOptions).build();
   });
   test('should open Google homepage and search for "Jest"', async () => {
     await driver.get("https://www.google.com");
