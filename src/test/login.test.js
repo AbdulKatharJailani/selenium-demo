@@ -4,7 +4,6 @@ import chrome from "selenium-webdriver/chrome";
 describe("Sample Selenium WebDriver Test", () => {
   
   test('should open Google homepage and search for "Jest"', async () => {
-    try {
      let driver = new Builder()
       .forBrowser(Browser.CHROME)
       .setChromeOptions(new chrome.Options().headless())
@@ -15,11 +14,7 @@ describe("Sample Selenium WebDriver Test", () => {
       await searchInput.sendKeys("Jest", Key.RETURN);
       await driver.wait(until.titleContains("Jest"), 10000);
       const pageTitle = await driver.getTitle();
-      expect(pageTitle).toContain("Jest"); 
-    } catch (error) {
-      console.error("Test failed:", error);
-      throw error;
-    }
+      expect(pageTitle).toContain("Jest");    
   });
 });
 
