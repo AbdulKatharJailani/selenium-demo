@@ -1,13 +1,12 @@
 import { Builder, By, Key, until, Browser } from "selenium-webdriver";
-import chrome from "selenium-webdriver/chrome";
-import 'chromedriver';
+import firefox from "selenium-webdriver/firefox";
+
 
 describe("Sample Selenium WebDriver Test", () => {
-  
-  test('should open Google homepage and search for "Jest"', async () => {
+   test('should open Google homepage and search for "Jest"', async () => {
      let driver = await new Builder()
-      .forBrowser(Browser.CHROME)
-      .setChromeOptions(new chrome.Options().headless())
+      .forBrowser(Browser.FIREFOX)
+      .setFirefoxOptions(new firefox.Options().headless())
       .build();
       console.log("WebDriver initialized successfully");
       await driver.get("https://www.google.com");
